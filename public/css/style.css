@@ -5,8 +5,9 @@
 }
 
 @font-face {
-    font-family: "LeagueSpartan";
-    src: url('../fonts/Spartan.ttf') format(truetype),
+    font-family: 'League Spartan Variable';
+    src: url('../fonts/LeagueSpartan-VF.woff2') format('woff2-variations');
+    font-weight: 200 900;
 }
 
 *,
@@ -44,6 +45,7 @@ h1 {
     padding: 1rem 0;
     position: relative;
     border-bottom: 1px solid #a7a7a7;
+    font-family: 'League Spartan Variable', Arial, Helvetica, sans-serif;
 }
 
 .todo-item#text {
@@ -68,7 +70,7 @@ form {
     margin-top: 3rem;
     display: flex;
     align-items: center;
-    font-family: 'LeagueSpartan', Times, serif;
+    font-family: 'League Spartan Variable', Arial, Helvetica, sans-serif;
 }
 
 input {
