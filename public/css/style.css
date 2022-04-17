@@ -1,13 +1,12 @@
 @font-face {
     font-family: "Fanwood";
-    src: url('../fonts/fanwood_text-webfont.ttf') format(truetype),
-        url('../fonts/fanwood_text-webfont.ttf') format(truetype) font-italic,
+    src: url('../fonts/Fanwood/fanwood_text-webfont.ttf') format(truetype),
+        url('../fonts/Fanwood/fanwood_text_italic-webfont.ttf') format(truetype) font-italic;
 }
 
 @font-face {
-    font-family: "League Spartan";
-    src: url('../fonts/Spartan/LeagueSpartan-Regular.ttf') format(truetype),
-         url('../fonts/Spartan/LeagueSpartan-Bold.ttf') format(truetype),
+    font-family: "LeagueSpartan";
+    src: url('../fonts/Spartan.ttf') format(truetype),
 }
 
 *,
@@ -44,7 +43,6 @@ h1 {
     width: 100%;
     padding: 1rem 0;
     position: relative;
-    font-family: 'League Spartan', Helvetica, sans-serif;
     border-bottom: 1px solid #a7a7a7;
 }
 
@@ -54,7 +52,6 @@ h1 {
 
 .delete-button {
     color: #FF0000;
-    font-family: 'League Spartan', Helvetica, sans-serif;
     font-weight: 800;
     letter-spacing: 2px;
     font-size: .75rem;
@@ -71,6 +68,11 @@ form {
     margin-top: 3rem;
     display: flex;
     align-items: center;
+    font-family: 'LeagueSpartan', Times, serif;
+}
+
+input {
+    font-family: inherit;
 }
 
 input[name="todo"] {
@@ -80,7 +82,6 @@ input[name="todo"] {
     font-size: 2rem;
     position: relative;
     outline: none;
-    font-family: 'League Spartan', Helvetica, sans-serif;
 }
 
 input[name="todo"]::placeholder {
