@@ -54,9 +54,8 @@ const createDeleteButton = (parent, value) => {
 const addItem = (item) => {
     if (item !== '') { // Checks if value is not empty.
         const todo = { todo: item, completed: false }
-        console.log(todo)
         data.push(todo);
-        createListItem(list, Object.values(todo));
+        createListItem(list, todo);
         localStorage.setItem('todos', JSON.stringify(data));
         emptyState(data);
     }
