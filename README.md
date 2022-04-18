@@ -7,15 +7,16 @@ A basic todo app including a lifecycle made entirely in Vanilla JS.
 - Mark as completed
 - Delete cards
 - Empty State
+- Loading a new quote from a JSON file
 
 ## Todo
 
-- [ ] Load in a different thought in the input (maybe with an API call?)
-- [X] Mark as archived/checked
-- [ ] Floating label by input?
-- [ ] Fix ugly CSS
-- [ ] Better design
-- [ ] Create error message when input is not valid
+- [X] Load in different quotes from a JSON file.
+- [X] Mark as archived/checked.
+- [X] Floating label by input?
+- [ ] Fix ugly CSS markup.
+- [ ] Redesign cards for tasks.
+- [X] Create error message when input is not valid.
 - [X] Empty state?
 - [ ] Ability to organize cards
 

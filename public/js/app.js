@@ -3,11 +3,19 @@ const input = document.querySelector('[name="todo"]')
 const list = document.querySelector('ul');
 const emptyStateElement = document.querySelector('.empty');
 
-// All stored values in the localStorage
+// All stored values in the localStorage.
 const storedValues = JSON.parse(localStorage.getItem('todos'));
 
-// Array that holds existing data or an empty array when no stored data is available
+// Array that holds existing data or an empty array when no stored data is available.
 let data = storedValues || [];
+
+/**
+ * Returns an index for a random element from an array.
+ * 
+ * @param {*} arr the targeted array.
+ * @returns Number
+ */
+const getRandomElement = (arr) => Math.floor(Math.random() * arr.length);
 
 /**
  * Creates a list item that appends to a list.
@@ -29,6 +37,14 @@ const createListItem = (target, value) => {
     target.appendChild(listItem);
 }
 
+/**
+ * Creates a complete button that holds an event listener when clicked. 
+ * Sets the complete key value to true or false when clicked.
+ * 
+ * @param {*} parent the parent of the complete button.
+ * @param {*} value the text content that the todo holds.
+ * @returns Complete Button
+ */
 const createCompleteButton = (parent, value) => {
     const completeButton = document.createElement('a');
     completeButton.classList.add('complete-button');
@@ -36,10 +52,10 @@ const createCompleteButton = (parent, value) => {
 
     completeButton.addEventListener('click', () => {
         const currentItem = Object(data.filter((event) => event === value)[0]); // Filters the data array from the current value.
-        const newItem = currentItem;
+        const newItem = currentItem; // Create a new item to replace the current one in the data array.
 
         !newItem.completed ? newItem.completed = true : newItem.completed = false; // Checks the current value.
-        
+
         data[data.indexOf(currentItem)] = newItem;
         localStorage.setItem('todos', JSON.stringify(data)); // Updates the local storage with the new dataset.
 
@@ -84,6 +100,14 @@ const addItem = (item) => {
         createListItem(list, todo);
         localStorage.setItem('todos', JSON.stringify(data));
         emptyState(data);
+    } else {
+        form.classList.toggle('error');
+        input.classList.toggle('error');
+
+        setTimeout(() => {
+            form.classList.toggle('error');
+            input.classList.toggle('error');
+        }, 3500);
     }
 }
 
@@ -100,6 +124,17 @@ const emptyState = (arr) => {
     }
 }
 
+/**
+ * Sets a new placeholder for the input field. Loads the text from a local JSON file.
+ */
+const setNewPlaceholder = () => {
+    fetch("good_promises.json")
+        .then(response => response.json())
+        .then(jsonData => {
+            input.placeholder = Object.values(jsonData[getRandomElement(jsonData)])[0].toLowerCase();
+        });
+};
+
 // Creates a list item for each existing item on the localStorage on runtime and checks for empty state
 document.addEventListener('DOMContentLoaded', () => {
     data.forEach(todo => {
@@ -109,10 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
     emptyState(data);
 });
 
+// Sets a new placeholder on input click
+input.addEventListener('click', () => {
+    setNewPlaceholder();
+});
+
 // Handles the form when submitted
 form.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevents page from reloading
     addItem(input.value);
     form.reset(); // Resets text input field on submit
 });
-

@@ -83,6 +83,7 @@ form {
     display: flex;
     align-items: center;
     font-family: 'League Spartan Variable', Arial, Helvetica, sans-serif;
+    position: relative;
 }
 
 input {
@@ -93,7 +94,7 @@ input[name="todo"] {
     grid-column: span 9;
     border: none;
     height: 4rem;
-    font-size: 2rem;
+    font-size: 2rem;    
     position: relative;
     outline: none;
 }
@@ -104,6 +105,40 @@ input[name="todo"]::placeholder {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    opacity: 0;
+    transition: .15s ease-out .15s;
+}
+
+input[name="todo"]:focus::placeholder {
+    opacity: .75;
+}
+
+input[name="todo"]:focus + .todo-label {
+    top: 0;
+    left: 0;
+    transform: scale(.5) translate(-50%, -100%);
+}
+
+.todo-label {
+    font-size: 2rem;
+    color: #000000;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: text;
+    transition: .3s ease-out;
+}
+
+form.error::before {
+    content: "Your to-do cannot be empty.";
+    color: #FF0000;
+    position: absolute;
+    top: calc(100% + 1rem);
+    left: 0;
+}
+
+input.error {
+    border-bottom: 1px solid #FF0000;
 }
 
 input[type="submit"] {
