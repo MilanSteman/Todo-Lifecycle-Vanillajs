@@ -19,8 +19,34 @@ const createListItem = (target, value) => {
     const listItem = document.createElement('li');
     listItem.classList.add('todo-item');
     listItem.textContent = Object.values(value)[0];
+    listItem.appendChild(createCompleteButton(listItem, value));
     listItem.appendChild(createDeleteButton(listItem, value));
+
+    if (Object.values(value)[1]) {
+        listItem.classList.add('completed-card');
+    }
+
     target.appendChild(listItem);
+}
+
+const createCompleteButton = (parent, value) => {
+    const completeButton = document.createElement('a');
+    completeButton.classList.add('complete-button');
+    completeButton.textContent = 'Complete';
+
+    completeButton.addEventListener('click', () => {
+        const currentItem = Object(data.filter((event) => event === value)[0]); // Filters the data array from the current value.
+        const newItem = currentItem;
+
+        !newItem.completed ? newItem.completed = true : newItem.completed = false; // Checks the current value.
+        
+        data[data.indexOf(currentItem)] = newItem;
+        localStorage.setItem('todos', JSON.stringify(data)); // Updates the local storage with the new dataset.
+
+        parent.classList.toggle('completed-card');
+    });
+
+    return completeButton;
 }
 
 /**

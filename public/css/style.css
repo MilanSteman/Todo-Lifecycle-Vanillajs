@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'League Spartan Variable';
-    src: url('../fonts/LeagueSpartan-VF.woff2') format('woff2-variations');
+    src: url('../fonts/LeagueSpartan/LeagueSpartan-VF.woff2') format('woff2-variations');
     font-weight: 200 900;
 }
 
@@ -52,6 +52,18 @@ h1 {
     height: auto;
 }
 
+.complete-button {
+    color: #0000ff;
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: .75rem;
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    text-transform: uppercase;
+}
 .delete-button {
     color: #FF0000;
     font-weight: 800;
@@ -124,4 +136,8 @@ img {
 
 .hidden {
     display: none;
+}
+
+.completed-card {
+    background-color: #0ba751;
 }
