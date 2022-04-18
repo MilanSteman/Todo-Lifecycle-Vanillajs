@@ -8,4 +8,9 @@ A basic todo app including a lifecycle made entirely in Vanilla JS.
 - [ ] Floating label by input?
 - [ ] Fix ugly CSS
 - [ ] Create error message when input is not valid
-- [ ] Empty state?
+- [X] Empty state?
+- Ability to organize cards
+
+
+## Fonts
+Fonts courtesy of theleagueofmoveabletype.com

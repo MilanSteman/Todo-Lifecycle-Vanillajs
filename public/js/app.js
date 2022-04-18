@@ -1,11 +1,12 @@
 const form = document.querySelector('form');
 const input = document.querySelector('[name="todo"]')
 const list = document.querySelector('ul');
+const emptyStateElement = document.querySelector('.empty');
 
 // All stored values in the localStorage
 const storedValues = JSON.parse(localStorage.getItem('todos'));
 
-// Array that holds existing data
+// Array that holds existing data or an empty array when no stored data is available
 let data = storedValues || [];
 
 /**
@@ -17,7 +18,7 @@ let data = storedValues || [];
 const createListItem = (target, value) => {
     const listItem = document.createElement('li');
     listItem.classList.add('todo-item');
-    listItem.textContent = value;
+    listItem.textContent = Object.values(value)[0];
     listItem.appendChild(createDeleteButton(listItem, value));
     target.appendChild(listItem);
 }
@@ -39,6 +40,7 @@ const createDeleteButton = (parent, value) => {
         parent.parentNode.removeChild(parent); // Removes list item element from the list.
         data = data.filter((event) => event !== value); // Filters the data array from the current value.
         localStorage.setItem('todos', JSON.stringify(data)); // Updates the local storage with the new dataset.
+        emptyState(data);
     });
 
     return deleteButton;
@@ -51,17 +53,35 @@ const createDeleteButton = (parent, value) => {
  */
 const addItem = (item) => {
     if (item !== '') { // Checks if value is not empty.
-        data.push(item);
-        createListItem(list, item);
+        const todo = { todo: item, completed: false }
+        console.log(todo)
+        data.push(todo);
+        createListItem(list, Object.values(todo));
         localStorage.setItem('todos', JSON.stringify(data));
+        emptyState(data);
     }
 }
 
-// Creates a list item for each existing item on the localStorage on runtime
+/**
+ * Toggles the empty state item by checking if there are no todos. 
+ * 
+ * @param {*} arr array that holds the todo data
+ */
+const emptyState = (arr) => {
+    if (Array.isArray(arr) && !arr.length) {
+        emptyStateElement.classList.remove('hidden');
+    } else {
+        emptyStateElement.classList.add('hidden');
+    }
+}
+
+// Creates a list item for each existing item on the localStorage on runtime and checks for empty state
 document.addEventListener('DOMContentLoaded', () => {
     data.forEach(todo => {
         createListItem(list, todo);
     });
+
+    emptyState(data);
 });
 
 // Handles the form when submitted

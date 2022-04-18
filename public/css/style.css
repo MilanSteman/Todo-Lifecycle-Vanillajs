@@ -107,3 +107,21 @@ input[type="submit"] {
     margin-left: auto;
     padding: 1rem 2rem;
 }
+
+.empty {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'League Spartan Variable', Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+}
+
+img {
+    margin-bottom: 1rem;
+    width: 50%;
+    object-fit: cover;
+}
+
+.hidden {
+    display: none;
+}
