@@ -13,4 +13,5 @@ A basic todo app including a lifecycle made entirely in Vanilla JS.
 
 
 ## Fonts
-Fonts courtesy of ![theleagueofmoveabletype.com]
+Fonts courtesy of [](https://www.theleagueofmoveabletype.com/)
+
